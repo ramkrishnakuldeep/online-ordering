@@ -1,0 +1,39 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+  overflow: auto;
+  .food-container {
+    display: flex;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    justify-content: center;
+    width: calc(100% - 4rem);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    overflow: auto;
+  }
+
+  .categories {
+    display: flex;
+    width: 96%;
+    padding: 1rem 2%;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .category {
+      width: 50%;
+      background-color: white;
+      text-align: center;
+      color: black;
+      padding: .51rem;
+      text-transform: capitalize;
+
+      &.active {
+        background-color: darkviolet;
+        color: white;
+      }
+    }
+  }
+}

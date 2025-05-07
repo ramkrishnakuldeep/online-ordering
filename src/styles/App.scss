@@ -1,0 +1,53 @@
+#root {
+  width: 100%;
+}
+.app-home {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  .home-main {
+    flex: 1;
+    display: flex;
+    overflow: auto;
+    width: 100%;
+    flex-direction: column;
+
+    .title {
+      text-align: center;
+      margin: 0;
+      padding: 0.5rem;
+      background-color: rgb(205, 97, 50);
+    }
+
+    .view-history {
+      display: flex;
+      background-color: steelblue;
+      padding: 0.5rem;
+      justify-content: center;
+      align-items: center;
+      button {
+        color: white;
+      }
+    }
+
+    .delete-history {
+      display: flex;
+      background-color: steelblue;
+      padding: 0.5rem;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+  }
+}
+
+.empty-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: silver;
+  font-size: 1.5rem;
+  padding: 2rem;
+}

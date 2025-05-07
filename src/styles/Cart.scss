@@ -1,0 +1,72 @@
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+  width: calc(100% - 2rem);
+  gap: 1rem;
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: silver;
+
+    button {
+      padding: 0;
+      color: white;
+    }
+
+    .info {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      .name-price {
+          display: flex;
+          flex-direction: column;
+          gap: .25rem;
+      }
+      .add-remove {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: white;
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        button {
+            color: white;
+        }
+      }
+    }
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+  }
+
+  .submit {
+    background-color: dodgerblue;
+    color: white;
+    padding: .5rem;
+  }
+
+  .order-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    .title {
+        background-color:brown;
+    }
+    .sub-total, .total, .delivery-fee {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+  }
+}
