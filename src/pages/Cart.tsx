@@ -80,7 +80,7 @@ const Cart = () => {
           variant="filled"
           sx={{ width: '100%' }}
         >
-          This is a success Alert inside a Snackbar!
+          Your order is successfully submitted
         </Alert>
       </Snackbar>
     </>
