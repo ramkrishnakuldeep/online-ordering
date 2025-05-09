@@ -1,6 +1,5 @@
 import type { ICartType } from "../utils/types";
 import type { IRootState } from "../store/store";
-
 import CartItem from "../components/CartItem";
 import "../styles/Cart.scss";
 import Button from "@mui/material/Button";
@@ -12,7 +11,6 @@ import { useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useAppDispatch, useAppSelector } from "../hooks/appHooks";
-
 
 const Cart = () => {
   const myCart: Array<ICartType> = useAppSelector((state: IRootState) => state.myCart);
@@ -56,19 +54,18 @@ const Cart = () => {
           <>
             <div className="order-summary">
               <div className="title"> Order Summary </div>
-              <div className="sub-total"> <span>Subtotal :  </span> <span>{getFormattedNumber(getCartSubTotal)}</span></div>
+              <div className="sub-total"> <span>Subtotal :  </span> <span className="value">{getFormattedNumber(getCartSubTotal)}</span></div>
               <div className="delivery-fee"> <span> Delivery fee : </span> <span> {getFormattedNumber(deliveryFee)} </span>  </div>
-              <div className="total"> <span> Total : </span><span> {getFormattedNumber(totalAmount)} </span></div>
+              <div className="total"> <span> Total : </span><span className="value"> {getFormattedNumber(totalAmount)} </span></div>
             </div>
-            <Button onClick={onSubmitOrder} className="submit">
+            <Button aria-label="submit_order" onClick={onSubmitOrder} className="submit">
               Submit
             </Button>
           </>
         )}
       </div>
-      <Link className="view-history" to="/history">
-        {" "}
-        <Button> View Order History </Button>{" "}
+      <Link  aria-label='history' className="view-history" to="/history">
+        <Button> View Order History </Button>
       </Link>
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}

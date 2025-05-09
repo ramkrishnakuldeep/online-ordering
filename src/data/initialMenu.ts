@@ -1,7 +1,7 @@
 import { FoodCategory } from "../utils/enum";
 import type { IFoodItem } from "../utils/types";
 
-export const initialMenu: Array<IFoodItem> = [
+export const initialMenu = (): Array<IFoodItem> => [
     {
         id: 101,
         name: 'Chicken Biryani',

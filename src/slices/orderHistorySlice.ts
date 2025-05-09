@@ -1,11 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import type { ICartType, IOrder } from '../utils/types'
+import type { ICartType, IHistoryState } from '../utils/types'
 
-
-export type HistoryState = Array<IOrder>
-
-const initialState: HistoryState = []
-
+const initialState: IHistoryState = []
 
 const orderHistorySlice = createSlice({
     name: 'orderHistory',

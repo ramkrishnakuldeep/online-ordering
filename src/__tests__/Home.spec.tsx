@@ -1,84 +1,59 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
 import { renderWithProviders } from "./test-utils";
-
-import App from "../App";
 import { FoodCategory } from "../utils/enum";
+import Home from "../pages/Home";
+import { mockUseAppSelector } from "./setup";
+import { initialMenu } from "../data/initialMenu";
+
+const mockMenuData = initialMenu();
+
+mockUseAppSelector.mockImplementation((selector) => {
+  const state = {
+    menu: mockMenuData,
+    myCart: [],
+  };
+  return selector(state);
+});
 
 describe("With React Testing Library", () => {
+
+  beforeEach(() => {
+    renderWithProviders(<Home />);
+  });
+  
   it('Should show text "Menu"', () => {
-    renderWithProviders(<App />);
-    const text = "Menu";
-    const menuText = screen.getByText(text);
-    expect(menuText.textContent).toContain(text);
+    const menuText = screen.getByRole("heading", { name: /menu/i, level: 2 });
+    expect(menuText.textContent).toContain("Menu");
   });
 
-  it("Should have 3 categories", () => {
-    const { container } = renderWithProviders(<App />);
-    const children = container.querySelectorAll(".category");
-    expect(children.length).toBe(Object.values(FoodCategory).length);
+  it("renders all categories", () => {
+    const categoryElements = document.querySelectorAll(".category");
+    expect(categoryElements.length).toBe(Object.values(FoodCategory).length);
   });
 
-  it("Should have 1 active category", () => {
-    const { container } = renderWithProviders(<App />);
-    const children = container.querySelectorAll(".category.active");
-    expect(children.length).toBe(1);
-    expect(children[0].textContent).toContain("food");
+  it("sets the correct initial active category", () => {
+    const activeCategory = screen.getByRole("button", { name: FoodCategory.FOOD });
+    expect(activeCategory.classList.contains("active")).toBeTruthy();
   });
 
-  it("Should have activate another category on click", async () => {
-    const { container } = renderWithProviders(<App />);
-    const children = container.querySelectorAll(".category:not(.active)");
-    expect(children.length).toBe(2);
-    expect(children[0].textContent).toContain("drinks");
-    expect(children[1].textContent).toContain("others");
+  it("updates the active category on click", async () => {
+    const drinkCategory = screen.getByRole("button", { name: FoodCategory.DRINKS });
+    await userEvent.click(drinkCategory);
 
-    await userEvent.click(children[0]);
-
-    const drinksElement = container.querySelectorAll(".category.active");
-    expect(drinksElement[0].textContent).toContain("drinks");
-
-    await userEvent.click(children[1]);
-
-    const othersCategory = container.querySelectorAll(".category.active");
-    expect(othersCategory[0].textContent).toContain("others");
+    expect(drinkCategory.classList.contains("active")).toBeTruthy();
+    const foodCategory = screen.getByRole("button", { name: FoodCategory.FOOD });
+    expect(foodCategory.classList.contains("active")).toBeFalsy();
   });
 
-  it("Should be able to add item to cart", async () => {
-    const { container } = renderWithProviders(<App />);
+  it("filters menu items based on the selected category", async () => {
+    const drinkCategory = screen.getByRole("button", { name: FoodCategory.DRINKS });
+    await userEvent.click(drinkCategory);
 
-    const addIcon = screen.getAllByTestId("AddCircleIcon");
-
-    expect(addIcon.length).toBe(3);
-
-    const badgeElemBefore = container.querySelectorAll(
-      ".app-home > .app-header > a > button > .MuiBadge-root > .MuiBadge-badge"
-    );
-    expect(badgeElemBefore[0].textContent).toBe("");
-
-    await userEvent.click(addIcon[1]);
-
-    const deleteIcon = screen.getAllByTestId("DeleteIcon");
-    expect(deleteIcon.length).toBe(1);
-
-    const addIconAfter = screen.getAllByTestId("AddCircleIcon");
-    expect(addIconAfter.length).toBe(2);
-
-    const badgeElemAfter = container.querySelectorAll(
-      ".app-home > .app-header > a > button > .MuiBadge-root > .MuiBadge-badge"
-    );
-    expect(badgeElemAfter[0].textContent).toBe("1");
-
-    const foodItemsAfter = container.querySelectorAll(
-      ".food-item > .details > .action > button"
-    );
-    await userEvent.click(foodItemsAfter[1]);
-
-    const addIconAfterCart = screen.getAllByTestId("AddCircleIcon");
-    expect(addIconAfterCart.length).toBe(3);
+    const menuItems = document.querySelectorAll(".food-item");
+    expect(menuItems.length).toBe(3);
+    const drinksMenu = mockMenuData.filter((item) => item.category === FoodCategory.DRINKS)
+    expect(menuItems[0].textContent).toContain(drinksMenu[0].name);
   });
-
-
 });

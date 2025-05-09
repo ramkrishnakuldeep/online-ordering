@@ -19,7 +19,7 @@ const History = () => {
   ));
   return (
     <>
-      <h2 className="title">Order History</h2>
+      <h2 aria-label="order history" className="title">Order History</h2>
       <div className="history-container">
         {orderHistories}
         {orderHistory.length === 0 && (
@@ -29,7 +29,7 @@ const History = () => {
         )}
       </div>
       {orderHistory.length !== 0 && (
-        <Button onClick={onDeleteHistory} className="delete-history">
+        <Button onClick={onDeleteHistory} className="delete-history" aria-label="delete history">
           Delete History
         </Button>
       )}

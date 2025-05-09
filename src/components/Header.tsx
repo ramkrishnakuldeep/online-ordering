@@ -9,8 +9,6 @@ import type { ICartType } from "../utils/types";
 import type { IRootState } from "../store/store";
 import { useAppSelector } from "../hooks/appHooks";
 
-
-
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
     top: -12px;
@@ -20,15 +18,13 @@ const CartBadge = styled(Badge)`
 
 const Header = () => {
   const location = useLocation();
-
   const myCart: Array<ICartType> = useAppSelector((state: IRootState) => state.myCart);
-
-
+  
   return (
     <header className="app-header">
       <span data-testid="hello-text">Hello, Mark Adam!</span>
       {location.pathname === "/" && (
-        <Link to="/cart">
+        <Link aria-label='cart' to="/cart">
           <IconButton>
             <ShoppingCartIcon fontSize="small" />
             <CartBadge badgeContent={myCart.length} color="primary" overlap="circular" />
@@ -36,7 +32,7 @@ const Header = () => {
         </Link>
       )}
       {(location.pathname === "/cart" ||  location.pathname === "/history") && (
-        <Link to="/">
+        <Link aria-label='home' to="/">
           <IconButton>
             <HomeIcon fontSize="small" />
           </IconButton>

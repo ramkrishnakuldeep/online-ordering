@@ -1,9 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import type { ICartType } from '../utils/types'
+import type { ICartType, ICartState } from '../utils/types'
 
-export type CartState = Array<ICartType>
-
-const initialState: CartState = []
+const initialState: ICartState = []
 
 const cartSlice = createSlice({
     name: 'myCart',

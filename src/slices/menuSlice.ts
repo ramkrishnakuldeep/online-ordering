@@ -4,7 +4,7 @@ import { initialMenu } from '../data/initialMenu'
 
 export type MenuState = Array<IFoodItem>
 
-const initialState: MenuState = initialMenu
+const initialState: MenuState = initialMenu()
 
 const menuSlice = createSlice({
     name: 'menu',

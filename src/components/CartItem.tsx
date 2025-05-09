@@ -14,9 +14,9 @@ import {
 const CartItem = (props: { item: ICartType }) => {
 	const dispatch = useAppDispatch();
 	return (
-		<div className="cart-item">
+		<div className="cart-item" aria-label="cart-item">
 			<div className="info">
-				<img src={props.item.image} alt="" />
+				<img src={props.item.image} alt="cart_item_image" />
 				<div className="name-price">
 					<div className="item-name"> {props.item.name} </div>
 					<div className="price">
@@ -27,7 +27,7 @@ const CartItem = (props: { item: ICartType }) => {
 							className="remove"
 							onClick={() => dispatch(decreaseItem(props.item.id))}
 						>
-							<IconButton>
+							<IconButton aria-label="remove">
 								<RemoveIcon />
 							</IconButton>
 						</span>
@@ -36,14 +36,14 @@ const CartItem = (props: { item: ICartType }) => {
 							className="add"
 							onClick={() => dispatch(increaseItem(props.item.id))}
 						>
-							<IconButton>
+							<IconButton aria-label="add">
 								<AddIcon />
 							</IconButton>
 						</span>
 					</div>
 				</div>
 			</div>
-			<IconButton onClick={() => dispatch(deleteFromCart(props.item.id))}>
+			<IconButton aria-label="delete" onClick={() => dispatch(deleteFromCart(props.item.id))}>
 				<DeleteIcon sx={{ fontSize: 40 }} />
 			</IconButton>
 		</div>

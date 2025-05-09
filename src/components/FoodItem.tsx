@@ -11,22 +11,21 @@ import { useAppDispatch, useAppSelector } from "../hooks/appHooks";
 const FoodItem = (props: { item: IFoodItem }) => {
   const dispatch = useAppDispatch();
   const myCart: Array<ICartType> = useAppSelector((state: IRootState) => state.myCart);
+  const isItemInCart = myCart.filter((item) => item.id === props.item.id).length !== 0;
 
   return (
-    <div className="food-item">
-      <span className="rating"></span>
-      <img src={props.item.image} alt="" />
+    <div className="food-item" aria-label="food-item">
+      <img src={props.item.image} alt="food_item_image" />
       <div className="details">
         <div className="info">
           <span className="name"> {props.item.name} </span>
           <span className="price">
-            {" "}
-            {getFormattedNumber(props.item.price)}{" "}
+            {getFormattedNumber(props.item.price)}
           </span>
         </div>
         <div className="action">
-          {myCart.filter((item) => item.id === props.item.id).length !== 0 && (
-            <IconButton
+          {isItemInCart && (
+            <IconButton aria-label="delete"
               onClick={() =>
                 dispatch(deleteFromCart(props.item.id))
               }
@@ -34,8 +33,8 @@ const FoodItem = (props: { item: IFoodItem }) => {
               <DeleteIcon sx={{ fontSize: 40 }} />
             </IconButton>
           )}
-          {myCart.filter((item) => item.id === props.item.id).length === 0 && (
-            <IconButton
+          {!isItemInCart && (
+            <IconButton aria-label="add"
               onClick={() =>
                 dispatch(addToCart({ ...props.item, quantity: 1 }))
               }

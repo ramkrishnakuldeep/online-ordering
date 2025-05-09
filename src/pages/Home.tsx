@@ -7,7 +7,6 @@ import { FoodCategory } from "../utils/enum";
 import { useState } from "react";
 import CategoryItem from "../components/CategoryItem";
 import { useAppSelector } from "../hooks/appHooks";
-//
 
 export default function Home() {
   const [category, setCategory] = useState(FoodCategory.FOOD);
@@ -31,7 +30,7 @@ export default function Home() {
 
   return (
     <>
-      <h2 className="title"> Menu </h2>
+      <h2 aria-label="menu" className="title"> Menu </h2>
       <div className="home-container">
         <div className="categories">{categories}</div>
         <div className="food-container">{menuItems}</div>

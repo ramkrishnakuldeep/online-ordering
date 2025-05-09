@@ -11,9 +11,9 @@ function App() {
       <Header />
       <section className="home-main">
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/history" element={<History />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/history" element={<History />} />
         </Routes>
       </section>
     </div>
