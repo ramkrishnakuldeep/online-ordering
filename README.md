@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project demonstrates a modern web application setup using React, TypeScript, and Vite. It includes advanced configurations, tools, and best practices to ensure scalability, maintainability, and performance.
 
-Currently, two official plugins are available:
+## Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React with TypeScript**: Build type-safe and scalable React applications.
+- **Vite**: Fast development server and optimized production builds.
+- **Redux Toolkit**: State management with Redux Toolkit for predictable state handling.
+- **React Router**: Client-side routing for navigation.
+- **ESLint and Prettier**: Enforce code quality and formatting standards.
+- **Unit Testing**: Comprehensive tests using `vitest` and `@testing-library/react`.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Structure
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **`src/`**: Contains all application source code.
+  - **`components/`**: Reusable UI components.
+  - **`store/`**: Redux store setup.
+  - **`hooks/`**: App hooks for custom use of dispatch and selectore function.
+  - **`utils/`**: Helper functions and types.
+  - **`utils/`**: Helper functions and types.
+  - **`App.tsx`**: Main application component.
+  - **`__tests__/`**: Unit and integration tests.
+- **`coverage`**: The coverage report ...
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## NPM Commands
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Here are the key npm commands to manage and run the project:
+
+### Development
+
+- **Start the development server**:
+  ```bash
+  npm run dev
+
+- **Build the project for production**:
+  Build the application and optimize it for deployment. The output will be in the `dist` folder.  
+  ```bash
+  npm run build
+
+- **Preview the production build**:
+  Serve the production build locally to test it before deployment.
+  ```bash
+  npm run preview
+
+- **Run tests in watch mode**:
+  Continuously run tests as files are modified.
+  ```bash
+  npm run test
+
+- **Generate test coverage report**:
+  Generate a detailed report of test coverage for the project.
+  ```bash
+  npm run coverage
