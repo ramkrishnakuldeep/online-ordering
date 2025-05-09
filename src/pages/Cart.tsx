@@ -1,5 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import type { ICartType, IRootState } from "../utils/types";
+import type { ICartType } from "../utils/types";
+import type { IRootState } from "../store/store";
+
 import CartItem from "../components/CartItem";
 import "../styles/Cart.scss";
 import Button from "@mui/material/Button";
@@ -10,11 +11,12 @@ import { getFormattedNumber } from "../utils/func";
 import { useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import { useAppDispatch, useAppSelector } from "../hooks/appHooks";
 
 
 const Cart = () => {
-  const myCart: Array<ICartType> = useSelector((state: IRootState) => state.myCart);
-  const dispatch = useDispatch();
+  const myCart: Array<ICartType> = useAppSelector((state: IRootState) => state.myCart);
+  const dispatch = useAppDispatch();
 
   const [open, setOpen] = useState(false);
 
@@ -44,6 +46,7 @@ const Cart = () => {
 
   return (
     <>
+      <h2 className="title"> My Cart </h2>
       <div className="cart-container">
         {cartItems}
         {myCart.length === 0 && (

@@ -5,8 +5,10 @@ import IconButton from "@mui/material/IconButton";
 import { styled, Badge, badgeClasses } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { useSelector } from 'react-redux'
-import type { ICartType, IRootState } from "../utils/types";
+import type { ICartType } from "../utils/types";
+import type { IRootState } from "../store/store";
+import { useAppSelector } from "../hooks/appHooks";
+
 
 
 const CartBadge = styled(Badge)`
@@ -19,12 +21,12 @@ const CartBadge = styled(Badge)`
 const Header = () => {
   const location = useLocation();
 
-  const myCart: Array<ICartType> = useSelector((state: IRootState) => state.myCart);
+  const myCart: Array<ICartType> = useAppSelector((state: IRootState) => state.myCart);
 
 
   return (
     <header className="app-header">
-      Hello, Mark Adam
+      <span data-testid="hello-text">Hello, Mark Adam!</span>
       {location.pathname === "/" && (
         <Link to="/cart">
           <IconButton>

@@ -1,15 +1,16 @@
 import IconButton from "@mui/material/IconButton";
-import type { ICartType, IFoodItem, IRootState } from "../utils/types";
+import type { ICartType, IFoodItem } from "../utils/types";
 import AddIcon from "@mui/icons-material/AddCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "../styles/FoodItem.scss";
 import { getFormattedNumber } from "../utils/func";
-import { useSelector, useDispatch } from "react-redux";
 import { addToCart, deleteFromCart } from "../slices/cartSlice";
+import type { IRootState } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../hooks/appHooks";
 
 const FoodItem = (props: { item: IFoodItem }) => {
-  const dispatch = useDispatch();
-  const myCart: Array<ICartType> = useSelector((state: IRootState) => state.myCart);
+  const dispatch = useAppDispatch();
+  const myCart: Array<ICartType> = useAppSelector((state: IRootState) => state.myCart);
 
   return (
     <div className="food-item">

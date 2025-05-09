@@ -1,13 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
-import type { IOrder, IRootState } from "../utils/types";
+import type { IOrder } from "../utils/types";
 import HistoryItem from "../components/HistoryItem";
 import "../styles/History.scss";
 import Button from "@mui/material/Button";
 import { clearHistory } from "../slices/orderHistorySlice";
+import { useAppDispatch, useAppSelector } from "../hooks/appHooks";
+import type { IRootState } from "../store/store";
 
 const History = () => {
-  const dispatch = useDispatch();
-  const orderHistory: Array<IOrder> = useSelector(
+  const dispatch = useAppDispatch();
+  const orderHistory: Array<IOrder> = useAppSelector(
     (state: IRootState) => state.orderHistory
   );
   const onDeleteHistory = () => {
