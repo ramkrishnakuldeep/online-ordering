@@ -1,19 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import orderHistoryReducer, { submitOrder, clearHistory } from '../slices/orderHistorySlice'
-import type { IHistoryState, ICartType } from '../utils/types'
+import type { IHistoryState } from '../utils/types'
 import { cartDataThreeItem } from "../data/mockCart";
 import { orderMockHistory } from "../data/mockOrderHistory";
 
 
 const mockCartData = cartDataThreeItem();
 const mockOrderHistory = orderMockHistory();
-
-const mockCartItem: ICartType = {
-    id: '1',
-    name: 'Pizza',
-    price: 10,
-    quantity: 2
-}
 
 const subTotal = mockCartData.reduce((acc, item) => acc + item.price * item.quantity, 0)
 

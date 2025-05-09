@@ -34,7 +34,6 @@ describe("History Component", () => {
 
   it("should render all order history items", () => {
     const { container } = renderWithProviders(<History />);
-    screen.debug();
     const historyItems = container.querySelectorAll(".history-item");
     expect(historyItems.length).toBe(mockHistoryData.length);
   });

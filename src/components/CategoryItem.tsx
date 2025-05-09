@@ -12,7 +12,7 @@ const getClasses = ({
 
 const CategoryItem = (props: {
   category: FoodCategory;
-  onClickAction: (type: FoodCategory) => void;
+  onClickAction: any;
   current: FoodCategory;
 }) => {
   return (
