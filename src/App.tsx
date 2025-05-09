@@ -1,23 +1,35 @@
 import "./styles/App.scss";
 import Header from "./components/Header";
 import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
+import { ROUTES } from "./utils/constants";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import History from "./pages/History";
 
-function App() {
+const App = () => {
   return (
-    <div className="app-home">
+    <div className="app-home" role="application">
       <Header />
-      <section className="home-main">
+      <main className="home-main">
+
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/history" element={<History />} />
+          <Route
+            path={ROUTES.HOME}
+            element={<Home />}
+          />
+          <Route
+            path={ROUTES.CART}
+            element={<Cart />}
+          />
+          <Route
+            path={ROUTES.HISTORY}
+            element={<History />}
+          />
         </Routes>
-      </section>
+      </main>
     </div>
   );
-}
+};
 
 export default App;

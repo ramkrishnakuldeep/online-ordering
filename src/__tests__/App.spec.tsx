@@ -1,8 +1,6 @@
-import { describe, it, expect, beforeEach } from "vitest";
-import { screen } from "@testing-library/react";
-
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { screen, cleanup } from "@testing-library/react";
 import { renderWithProviders } from "./test-utils";
-
 import App from "../App";
 import userEvent from "@testing-library/user-event";
 import { mockUseAppSelector } from "./setup";
@@ -19,9 +17,13 @@ mockUseAppSelector.mockImplementation((selector) => {
   return selector(state);
 });
 
-describe("With React Testing Library", () => {
+describe("App Navigation", () => {
   beforeEach(() => {
     renderWithProviders(<App />);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   it('Shows "Hello, Mark Adam!"', () => {
@@ -47,7 +49,7 @@ describe("With React Testing Library", () => {
     const historyLink = screen.getByRole("link", { name: /history/i });
     await userEvent.click(historyLink);
 
-    const cartHeading = screen.getByRole("heading", { name: /order history/i });
-    expect(cartHeading).toBeTruthy();
+    const historyHeading = screen.getByRole("heading", { name: /order history/i });
+    expect(historyHeading).toBeTruthy();
   });
 });

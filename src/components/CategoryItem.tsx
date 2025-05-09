@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import type { FoodCategory } from "../utils/enum";
 
 const getClasses = ({
@@ -16,13 +17,13 @@ const CategoryItem = (props: {
   current: FoodCategory;
 }) => {
   return (
-    <button
+    <Button
       aria-label={props.category}
       onClick={() => props.onClickAction(props.category)}
       className={getClasses(props)}
     >
       {props.category}
-    </button>
+    </Button>
   );
 };
 export default CategoryItem;

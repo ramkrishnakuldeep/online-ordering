@@ -10,44 +10,80 @@ import {
 	decreaseItem,
 	deleteFromCart,
 } from "../slices/cartSlice";
+import { memo, useCallback } from "react";
 
-const CartItem = (props: { item: ICartType }) => {
+interface CartItemProps {
+	item: ICartType;
+}
+
+const CartItem = memo(({ item }: CartItemProps) => {
 	const dispatch = useAppDispatch();
+
+	const handleIncrease = useCallback(() => {
+		dispatch(increaseItem(item.id));
+	}, [dispatch, item.id]);
+
+	const handleDecrease = useCallback(() => {
+		dispatch(decreaseItem(item.id));
+	}, [dispatch, item.id]);
+
+	const handleDelete = useCallback(() => {
+		dispatch(deleteFromCart(item.id));
+	}, [dispatch, item.id]);
+
+	const totalPrice = item.price * item.quantity;
+
 	return (
-		<div className="cart-item" aria-label="cart-item">
+		<div 
+			className="cart-item"
+			aria-label={`Cart item: ${item.name}`}
+		>
 			<div className="info">
-				<img src={props.item.image} alt="cart_item_image" />
+				<img 
+					src={item.image} 
+					alt={`${item.name}`}
+					loading="lazy"
+				/>
 				<div className="name-price">
-					<div className="item-name"> {props.item.name} </div>
+					<div className="item-name">{item.name}</div>
 					<div className="price">
-						{getFormattedNumber(props.item.price * props.item.quantity)}
+						{getFormattedNumber(totalPrice)}
 					</div>
-					<div className="add-remove">
-						<span
-							className="remove"
-							onClick={() => dispatch(decreaseItem(props.item.id))}
+					<div 
+						className="add-remove"
+						aria-label="Quantity controls"
+					>
+						<IconButton
+							aria-label="Decrease quantity"
+							onClick={handleDecrease}
 						>
-							<IconButton aria-label="remove">
-								<RemoveIcon />
-							</IconButton>
-						</span>
-						<span className="quantity">{props.item.quantity}</span>
-						<span
-							className="add"
-							onClick={() => dispatch(increaseItem(props.item.id))}
+							<RemoveIcon />
+						</IconButton>
+						<span 
+							className="quantity"
+							aria-label={`Current quantity: ${item.quantity}`}
 						>
-							<IconButton aria-label="add">
-								<AddIcon />
-							</IconButton>
+							{item.quantity}
 						</span>
+						<IconButton
+							aria-label="Increase quantity"
+							onClick={handleIncrease}
+						>
+							<AddIcon />
+						</IconButton>
 					</div>
 				</div>
 			</div>
-			<IconButton aria-label="delete" onClick={() => dispatch(deleteFromCart(props.item.id))}>
+			<IconButton 
+				aria-label={`Remove ${item.name} from cart`}
+				onClick={handleDelete}
+			>
 				<DeleteIcon sx={{ fontSize: 40 }} />
 			</IconButton>
 		</div>
 	);
-};
+});
+
+CartItem.displayName = 'CartItem';
 
 export default CartItem;

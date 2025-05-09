@@ -34,7 +34,7 @@ describe("With React Testing Library", () => {
   });
   it("Should call increaseItem when Add button is clicked", async () => {
     renderWithProviders(<CartItem item={cartItemOne} />);
-    const addButton = screen.getByRole("button", { name: /add/i });
+    const addButton = screen.getByRole("button", { name: /Increase quantity/i });
     addButton.click();
 
     expect(mockUseAppDispatch).toHaveBeenCalledWith(
@@ -44,7 +44,7 @@ describe("With React Testing Library", () => {
 
   it("Should call decreaseItem when Remove button is clicked", async () => {
     renderWithProviders(<CartItem item={cartItemOne} />);
-    const removeButton = screen.getByRole("button", { name: /remove/i });
+    const removeButton = screen.getByRole("button", { name: /Decrease quantity/i });
     removeButton.click();
 
     expect(mockUseAppDispatch).toHaveBeenCalledWith(
@@ -54,7 +54,7 @@ describe("With React Testing Library", () => {
 
   it("Should call deleteFromCart when Delete button is clicked", async () => {
     renderWithProviders(<CartItem item={cartItemOne} />);
-    const deleteButton = screen.getByRole("button", { name: /delete/i });
+    const deleteButton = screen.getByRole("button", { name: `Remove ${cartItemOne.name} from cart` });
     deleteButton.click();
     expect(mockUseAppDispatch).toHaveBeenCalledWith(
       deleteFromCart(cartItemOne.id)
@@ -63,7 +63,7 @@ describe("With React Testing Library", () => {
 
   it("Should display the correct image for the cart item", () => {
     renderWithProviders(<CartItem item={cartItemOne} />);
-    const itemImage = screen.getByAltText("cart_item_image");
+    const itemImage = screen.getByAltText(cartItemOne.name);
     expect(itemImage.getAttribute("src")).to.equal(cartItemOne.image);
   });
 

@@ -20,3 +20,8 @@ export type ICartType = IFoodItem & { quantity: number }
 export type IHistoryState = Array<IOrder>
 
 export type ICartState = Array<ICartType>
+
+export type ISubmitOrderPayload = {
+    items: Array<ICartType>
+    total: number
+}

@@ -1,21 +1,32 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import type { ICartType, IHistoryState } from '../utils/types'
+import type { IHistoryState, IOrder, ISubmitOrderPayload } from '../utils/types'
+import { generateOrderNumber } from '../utils/func'
+
+
+const SLICE_NAME = 'orderHistory' as const
 
 const initialState: IHistoryState = []
 
+const createOrder = (payload: ISubmitOrderPayload): IOrder => ({
+    orderNo: generateOrderNumber(),
+    items: payload.items,
+    total: payload.total
+})
+
 const orderHistorySlice = createSlice({
-    name: 'orderHistory',
-    initialState: initialState,
+    name: SLICE_NAME,
+    initialState,
     reducers: {
-        submitOrder: (state, action: PayloadAction<{ items: Array<ICartType>, total: number }>) => {
-            console.log('action.payload ', action.payload);
-            state.push({ orderNo: new Date().getTime().toString(), items: action.payload.items, total: action.payload.total })
+        submitOrder: (state, action: PayloadAction<ISubmitOrderPayload>) => {
+            const newOrder = createOrder(action.payload)
+            state.push(newOrder)
         },
-        clearHistory:(state) => {
+        clearHistory: (state) => {
             state.length = 0
         }
     }
 })
 
+// Exports
 export const { submitOrder, clearHistory } = orderHistorySlice.actions
 export default orderHistorySlice.reducer

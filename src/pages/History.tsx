@@ -11,25 +11,33 @@ const History = () => {
   const orderHistory: Array<IOrder> = useAppSelector(
     (state: IRootState) => state.orderHistory
   );
+  const hasOrderHistory = orderHistory.length > 0;
+
   const onDeleteHistory = () => {
     dispatch(clearHistory());
   };
-  const orderHistories = orderHistory.map((item) => (
-    <HistoryItem key={item.orderNo} item={item} />
-  ));
+  const renderOrderHistories = () =>
+    orderHistory.map((item) => <HistoryItem key={item.orderNo} item={item} />);
   return (
     <>
-      <h2 aria-label="order history" className="title">Order History</h2>
+      <h2 aria-label="order history" className="title">
+        Order History
+      </h2>
       <div className="history-container">
-        {orderHistories}
-        {orderHistory.length === 0 && (
+        {renderOrderHistories()}
+        {!hasOrderHistory && (
           <span className="empty-container">
             You don't have any order history yet
           </span>
         )}
       </div>
-      {orderHistory.length !== 0 && (
-        <Button onClick={onDeleteHistory} className="delete-history" aria-label="delete history">
+      {hasOrderHistory && (
+        <Button
+          title="delete history"
+          onClick={onDeleteHistory}
+          className="delete-history"
+          aria-label="delete history"
+        >
           Delete History
         </Button>
       )}
