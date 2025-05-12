@@ -41,6 +41,10 @@ The **Food Order App** is a React-based web application designed to simplify the
 
 ![Application Demo](project-images/functionalities.gif)
 
+## Test Coverage
+![Test Coverage](project-images/testCoverage.png)
+
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:

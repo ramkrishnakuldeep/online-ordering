@@ -7,23 +7,31 @@ const getClasses = ({
 }: {
   current: FoodCategory;
   category: FoodCategory;
-}) => {
-  return `category ${current === category ? "active" : ""}`;
+}): string => {
+  const isActive = current === category;
+  return `category ${isActive ? "active" : ""}`;
 };
 
-const CategoryItem = (props: {
+export const CategoryItem = ({
+  category,
+  onClickAction,
+  current,
+}: {
   category: FoodCategory;
-  onClickAction: any;
+  onClickAction: (category: FoodCategory) => void;
   current: FoodCategory;
 }) => {
   return (
     <Button
-      aria-label={props.category}
-      onClick={() => props.onClickAction(props.category)}
-      className={getClasses(props)}
+      aria-label={`Select category: ${category}`}
+      onClick={() => onClickAction(category)}
+      className={getClasses({ current, category })}
     >
-      {props.category}
+      {category}
     </Button>
   );
 };
+
+CategoryItem.displayName = 'CategoryItem';
+
 export default CategoryItem;

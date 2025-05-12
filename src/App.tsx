@@ -1,7 +1,6 @@
 import "./styles/App.scss";
 import Header from "./components/Header";
 import { Routes, Route } from "react-router-dom";
-import { lazy } from "react";
 import { ROUTES } from "./utils/constants";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
