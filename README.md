@@ -1,6 +1,6 @@
 # Food Order App
 
-A modern food ordering application that allows users to browse menus, add items to their cart, and place orders seamlessly.
+A modern food ordering application that allows users to browse menus, add items to their cart, and place orders seamlessly. Built with React frontend
 
 ## Screenshots
 
@@ -44,7 +44,6 @@ The **Food Order App** is a React-based web application designed to simplify the
 ## Test Coverage
 ![Test Coverage](project-images/testCoverage.png)
 
-
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
@@ -76,37 +75,44 @@ Before you begin, ensure you have the following installed:
 
 ## Usage
 
-1. Open your browser and navigate to http://localhost:5173/
-2. Browse the menu and add items to your cart
-3. Adjust quantities and proceed to checkout
-4. Enjoy your food!
+1. Open your browser and navigate to http://localhost:5176/
+2. Alternatively, an Electron app will launch with the same functionality.
+3. Browse the menu and add items to your cart
+4. Adjust quantities and proceed to checkout
+5. View your order history
+6. Enjoy your food!
 
 ## Scripts
 
-Here are the key npm commands for the project:
+### Scripts
+- Start the development server:
+   ```bash
+   npm run dev
+   ```
 
 - Start the development server:
    ```bash
    npm run dev
    ```
 
-- Build the application and optimize it for deployment. The output will be in the `dist` folder:
+- Build the application:
    ```bash
    npm run build
    ```
 
-- Continuously run tests as files are modified:
+- Run tests:
    ```bash
    npm run test
    ```
 
-- Generate a detailed report of test coverage for the project:
+- Generate test coverage:
    ```bash
    npm run coverage
    ```
 
 ## Technologies Used
 
+### Frontend
 - **React with TypeScript**: Build type-safe and scalable React applications
 - **Vite**: Fast development server and optimized production builds
 - **Redux Toolkit**: State management with Redux Toolkit for predictable state handling
