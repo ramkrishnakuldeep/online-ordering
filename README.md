@@ -1,6 +1,21 @@
-# Food Order App
+## Project Overview
 
-A modern food ordering application that allows users to browse menus, add items to their cart, and place orders seamlessly. Built with React frontend
+The **Food Order App** is a modern web application designed to provide a seamless food ordering experience. It allows users to:
+
+- Browse through a variety of food items and menus.
+- Add selected items to their cart.
+- Place orders with ease.
+- View their order history for reference.
+
+This project is built using **React** for the frontend, ensuring a responsive and user-friendly interface. The app is designed to be scalable and maintainable, making it suitable for real-world use cases in the food delivery industry.
+
+Key highlights of the project include:
+- Intuitive UI/UX design for effortless navigation.
+- Dynamic cart management with real-time updates.
+- Persistent order history for user convenience.
+- Modular and reusable components for efficient development.
+
+The application is ideal for learning React concepts such as state management, component-based architecture, and API integration.
 
 ## Screenshots
 
@@ -41,48 +56,69 @@ The **Food Order App** is a React-based web application designed to simplify the
 
 ![Application Demo](project-images/functionalities.gif)
 
-## Test Coverage
-![Test Coverage](project-images/testCoverage.png)
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed:
+Before you begin, ensure your system meets the following requirements:
 
-- **Node.js** (v14 or later) - [Download Node.js](https://nodejs.org/)
-- **npm** - Comes with Node.js
+- **Node.js**: Version 14 or later - [Download Node.js](https://nodejs.org/)
+  - Verify installation by running:
+    ```bash
+    node -v
+    ```
+- **npm**: Comes bundled with Node.js (ensure it is up-to-date)
+  - Verify installation by running:
+    ```bash
+    npm -v
+    ```
+
+### Programming Language and Framework
+- **Programming Language**: JavaScript/TypeScript (ES6+)
+- **Framework**: React (v19.1.0 or latest)
 
 ## Installation
 
-1. Clone the repository:
+Follow these steps to set up the project on your local machine:
+
+1. **Clone the Repository**:
+   Use Git to clone the repository to your local machine:
    ```bash
    git clone https://github.com/ramkrishnakuldeep/online-ordering.git
    ```
 
-2. Navigate to the project folder:
+2. **Navigate to the project folder:**
+   Change into the project folder:
    ```bash
    cd online-ordering
    ```
 
-3. Install dependencies:
+3. **Install dependencies:**
+   Install all required dependencies using npm:
    ```bash
    npm install
    ```
 
-4. Start the development server:
+4. **Start the development server:**
+   Run the application locally:
    ```bash
    npm run dev
    ```
+5. **Open in Browser**
+   The application will be available at:
+   ```bash
+   http://localhost:5176/
+   ```
+
+6. **Electron app**
+   Alternatively, an Electron app will launch with the same functionality.
+
 
 ## Usage
 
-1. Open your browser and navigate to http://localhost:5176/
-2. Alternatively, an Electron app will launch with the same functionality.
-3. Browse the menu and add items to your cart
-4. Adjust quantities and proceed to checkout
-5. View your order history
-6. Enjoy your food!
-
-## Scripts
+1. Browse the menu and add items to your cart
+2. Adjust quantities and proceed to checkout
+3. View your order history
+4. Enjoy your food!
 
 ### Scripts
 - Start the development server:
@@ -105,7 +141,18 @@ Before you begin, ensure you have the following installed:
    npm run test
    ```
 
-- Generate test coverage:
+## Test Coverage
+![Test Coverage](project-images/testCoverage.png)
+
+Includes comprehensive unit and integration tests to ensure the reliability and correctness of the application. The test coverage report provides insights into the following metrics:
+
+- **Statements**: 77% of executable code statements covered by tests.
+- **Branches**: 90% of conditional branches (e.g., `if`/`else` statements) tested.
+- **Functions**: 82% of functions or methods covered by tests.
+- **Lines**: 77% of code lines executed during testing.
+
+### How to Run Tests
+To generate the test coverage report, follow these steps:
    ```bash
    npm run coverage
    ```
